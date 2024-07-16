@@ -1,0 +1,54 @@
+<!--TO DO: ADD MAX LENGHT-->
+
+<form [formGroup]="prenotazioneForm" novalidate (ngSubmit)="onSubmit()">
+    <mat-card class="shipping-card">
+      <mat-card-header>
+        <mat-card-title>Inserisci Prenotazione Form</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-select placeholder="Medico" formControlName="id_medico">
+                @for (medico of listaMedici; track medico) {
+                  <mat-option [value]="medico">{{medico.nome}} - {{medico.prezzoVisita}}€</mat-option>
+                }
+              </mat-select>
+              @if (prenotazioneForm.controls['id_medico'].hasError('required')) {
+                <mat-error>id_medico is <strong>required</strong></mat-error>
+              }
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field>
+                <mat-label>Giorno</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="giorno">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                @if (prenotazioneForm.controls['giorno'].hasError('required')) {
+                  <mat-error>giorno is <strong>required</strong></mat-error>
+                }
+              </mat-form-field>  
+          </div>
+
+          <mat-form-field class="full-width">
+            <mat-select placeholder="fascia_oraria" formControlName="fascia_oraria">
+              @for (fasciaOraria of listaFascieOrarie; track fasciaOraria) {
+                <mat-option [value]="fasciaOraria.fasciaOraria">{{fasciaOraria.fasciaOraria}}</mat-option>
+              }
+            </mat-select>
+            @if (prenotazioneForm.controls['fascia_oraria'].hasError('required')) {
+              <mat-error>fascia_oraria is <strong>required</strong></mat-error>
+            }
+          </mat-form-field>
+
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit" [disabled]="prenotazioneForm.invalid">Submit</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+  
