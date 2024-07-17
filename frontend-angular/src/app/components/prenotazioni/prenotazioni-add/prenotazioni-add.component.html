@@ -35,7 +35,7 @@
 
           <mat-form-field class="full-width">
             <mat-select placeholder="Fascia Oraria" formControlName="fasciaOraria">
-              @for (fasciaOraria of listaFascieOrarie; track fasciaOraria) {
+              @for (fasciaOraria of listaFasceOrarieDisponibili; track fasciaOraria) {
                 <mat-option [value]="fasciaOraria">{{fasciaOraria}}</mat-option>
               }
             </mat-select>
@@ -53,5 +53,5 @@
   </form>
 
   <div>
-    <button mat-raised-button color="primary" (click)="getFasceOrarieOccupate()">Calcola Disponibilità Medico E Giorno</button>
+    <button mat-raised-button color="primary" (click)="getFasceOrarieOccupate()">Calcola Fasce Orarie Disponibili</button>
   </div>

@@ -49,7 +49,7 @@ export class PrenotazioniAddComponent {
     ];
 
     listaFasceOrariePrenotate: Array<string> = [];
-    fasceOrarieDisponibili: Array<string> = [];
+    listaFasceOrarieDisponibili: Array<string> = [];
 
   private fb = inject(FormBuilder);
 
@@ -131,10 +131,10 @@ getFasceOrarieOccupate(){
         console.log(this.listaFasceOrariePrenotate);
 
         // GENERAZIONE ARRAY NUOVO CON SOLO LE FASCE ORARIE NON PRENOTATE
-        this.fasceOrarieDisponibili = this.listaFascieOrarie.filter(fascia => !this.listaFasceOrariePrenotate.includes(fascia));
+        this.listaFasceOrarieDisponibili = this.listaFascieOrarie.filter(fascia => !this.listaFasceOrariePrenotate.includes(fascia));
         
         console.log('fasce orarie disponibili:');
-        console.log(this.fasceOrarieDisponibili);
+        console.log(this.listaFasceOrarieDisponibili);
   
     });
   }
