@@ -39,7 +39,7 @@ export class PrenotazioniGetComponent implements OnInit {
       console.log('reagito ad evento del service elimina prenotazione');
     })
 
-    alert('Prenotazione eliminata!')
+    alert('Funzione lanciata!')
 
   }
 

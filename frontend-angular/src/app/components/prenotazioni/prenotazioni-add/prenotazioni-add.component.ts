@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterLink, Router } from '@angular/router';
-import { PrenotazioneControllerService, MedicoControllerService, Medico } from '../../../api/v1';
+import { PrenotazioneControllerService, MedicoControllerService, Medico, Prenotazione } from '../../../api/v1';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatInputModule} from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
@@ -33,6 +33,7 @@ export class PrenotazioniAddComponent {
     private router: Router,
     private datePipe: DatePipe) { }
 
+    listaPrenotazioniFiltroMediciGiorni: Array<Prenotazione> = [];
     listaMedici: Array<Medico> = [];
     listaFascieOrarie: Array<string> = [
       '9:00 - 10:00',
@@ -89,9 +90,10 @@ onSubmit(): void {
       formattedGiorno,
       fasciaOraria,
       medico
-    ).subscribe(Response => {
+    ).subscribe(data => {
   
       console.log('reagito ad evento del service');
+      console.log(`data ${data}`);
   
     });
   
@@ -99,6 +101,31 @@ onSubmit(): void {
     this.router.navigate(['/listaprenotazioni'])
   }
 
+}
+
+getFasceOrarieOccupate(){
+
+  const giorno: Date = this.prenotazioneForm.value.giorno ?? new Date();
+
+  const formattedGiorno = this.datePipe.transform(giorno, 'yyyy-MM-dd') ?? 'error';
+
+  const medico: Medico | null = this.prenotazioneForm.value.medico ?? null;
+
+  console.log(medico);
+
+  if (medico) {
+    this.prenotazioneService.findByDateAndMedico(
+      formattedGiorno, 
+      medico).subscribe(data => {
+  
+        console.log('reagito ad evento findByDateAndMedico');
+      //console.log(`data ${data}`);
+      this.listaPrenotazioniFiltroMediciGiorni = data as Array<Medico>;
+      console.log(this.listaPrenotazioniFiltroMediciGiorni);
+  
+    });
+  }
+  
 }
 
 }

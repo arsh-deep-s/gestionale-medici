@@ -85,4 +85,24 @@ public class PrenotazioneController {
 		log.info("richiamato metodo GET findByDate");
         return service.findByGiorno(giorno);
     }
+    
+  	// FILTER BY GIORNO E MEDICO
+  	
+    @PostMapping("/findbygiornoandmedico")
+    public List<Prenotazione> findByDateAndMedico(@RequestParam LocalDate giorno,
+    												@RequestBody Medico medico) {
+    	
+    	
+    	// TEST REPO
+//    	Medico medico = new Medico();
+//    	
+//    	medico.setId(1L);
+//    	medico.setNome("Arsh");
+//    	medico.setIndirizzoStudio("Castello");
+//    	medico.setSpecialita("Occulista");
+//    	medico.setPrezzoVisita(191.00);
+    	
+		log.info("richiamato metodo GET findByDateAndMedico");
+        return service.findByGiornoAndMedico(giorno, medico);
+    }
 }

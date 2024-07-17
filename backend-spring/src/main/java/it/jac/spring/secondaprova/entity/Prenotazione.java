@@ -47,6 +47,6 @@ public class Prenotazione {
     @ManyToOne
 	@NonNull
     @JoinColumn(name = "ID_MEDICO", referencedColumnName = "ID", nullable = false)
-    private Medico Medico;
+    private Medico medico;
     
 }

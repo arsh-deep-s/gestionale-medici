@@ -6,11 +6,12 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import it.jac.spring.secondaprova.entity.Medico;
 import it.jac.spring.secondaprova.entity.Prenotazione;
 
 @Repository
 public interface PrenotazioneRepository extends JpaRepository <Prenotazione, Long>{
 	List<Prenotazione> findByGiorno(LocalDate giorno);
-	
-	
+	List<Prenotazione> findByGiornoAndMedico(LocalDate giorno, Medico medico);
+
 }
