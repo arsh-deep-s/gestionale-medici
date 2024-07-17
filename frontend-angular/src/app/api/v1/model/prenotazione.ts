@@ -17,6 +17,6 @@ export interface Prenotazione {
     giorno?: string;
     fasciaOraria?: string;
     codConferma?: string;
-    idMedico?: Medico;
+    medico?: Medico;
 }
 

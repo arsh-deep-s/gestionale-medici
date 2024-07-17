@@ -3,7 +3,6 @@ README.md
 api.module.ts
 api/api.ts
 api/clienteController.service.ts
-api/fasciaOrariaController.service.ts
 api/medicoController.service.ts
 api/prenotazioneController.service.ts
 configuration.ts
@@ -11,7 +10,6 @@ encoder.ts
 git_push.sh
 index.ts
 model/cliente.ts
-model/fasciaOraria.ts
 model/medico.ts
 model/models.ts
 model/prenotazione.ts

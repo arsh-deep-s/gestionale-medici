@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterLink, Router } from '@angular/router';
-import { PrenotazioneControllerService, MedicoControllerService, Medico, FasciaOraria, FasciaOrariaControllerService } from '../../../api/v1';
+import { PrenotazioneControllerService, MedicoControllerService, Medico } from '../../../api/v1';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatInputModule} from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
@@ -30,7 +30,6 @@ export class PrenotazioniAddComponent {
 
   constructor(private prenotazioneService: PrenotazioneControllerService,
     private medicoService: MedicoControllerService,
-    private fasciaOrariaService: FasciaOrariaControllerService,
     private router: Router,
     private datePipe: DatePipe) { }
 
@@ -53,16 +52,15 @@ export class PrenotazioniAddComponent {
   prenotazioneForm = this.fb.group({
     // imposto le stesse maxlenght che ho impostato nel database, in modo da avere il controllo
     // sia sul frontend che sul backend
-    fascia_oraria: [null, Validators.compose([Validators.required, Validators.maxLength(20)])],
+    fasciaOraria: [null, Validators.compose([Validators.required, Validators.maxLength(20)])],
     giorno: [null, Validators.compose([Validators.required, Validators.maxLength(12)])],
-    id_medico: [null, Validators.compose([Validators.required])],
+    medico: [null, Validators.compose([Validators.required])],
   });
 
   ngOnInit(): void {
 
-    // RECUPERO TIPOLOGIE
+    // RECUPERO MEDICI
     //console.log('richiamo metodo service findAll');
-
     this.medicoService.findAll1().subscribe(data => {
 
       console.log('reagito ad evento del service medici');
@@ -72,7 +70,6 @@ export class PrenotazioniAddComponent {
 
     });
     console.log('termine chiamata funzione service medici');
-
 }
 
 onSubmit(): void {
@@ -81,20 +78,17 @@ onSubmit(): void {
 
   const formattedGiorno = this.datePipe.transform(giorno, 'yyyy-MM-dd') ?? 'error';
 
-  const fascia_oraria: string = this.prenotazioneForm.value.fascia_oraria ?? '';
+  const fasciaOraria: string = this.prenotazioneForm.value.fasciaOraria ?? '';
 
-  const id_medico: Medico | null = this.prenotazioneForm.value.id_medico ?? null;
+  const medico: Medico | null = this.prenotazioneForm.value.medico ?? null;
 
   console.log('richiamo metodo service insertData');
 
-  console.log('MEDICO:',id_medico)
-  console.log('ORARIA:',fascia_oraria)
-
-  if (id_medico) {
+  if (medico) {
     this.prenotazioneService.addPrenotazione(
       formattedGiorno,
-      fascia_oraria,
-      id_medico
+      fasciaOraria,
+      medico
     ).subscribe(Response => {
   
       console.log('reagito ad evento del service');

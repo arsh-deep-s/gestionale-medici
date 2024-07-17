@@ -14,7 +14,7 @@ export class MediciGetComponent implements OnInit {
 
   listaMedici: Array<Medico> = [];
 
-  displayedColumns: string[] = ['id', 'indirizzoStudio', 'nome', 'prezzoVisita', 'specialita'];
+  displayedColumns: string[] = ['indirizzoStudio', 'nome', 'prezzoVisita', 'specialita'];
 
   constructor(private medicoService: MedicoControllerService) {}
 

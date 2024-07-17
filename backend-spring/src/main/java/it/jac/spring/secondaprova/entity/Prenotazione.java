@@ -41,12 +41,12 @@ public class Prenotazione {
 	@NonNull
     @Column(name = "COD_CONFERMA", length = 100, nullable = false, unique = true)
     private String codConferma;
-	
+
     // FK:
     
     @ManyToOne
 	@NonNull
     @JoinColumn(name = "ID_MEDICO", referencedColumnName = "ID", nullable = false)
-    private Medico idMedico;
+    private Medico Medico;
     
 }
