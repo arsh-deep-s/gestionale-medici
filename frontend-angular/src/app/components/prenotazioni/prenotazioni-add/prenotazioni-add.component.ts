@@ -48,6 +48,9 @@ export class PrenotazioniAddComponent {
       '18:00 - 19:00'
     ];
 
+    listaFasceOrariePrenotate: Array<string> = [];
+    fasceOrarieDisponibili: Array<string> = [];
+
   private fb = inject(FormBuilder);
 
   prenotazioneForm = this.fb.group({
@@ -117,18 +120,21 @@ getFasceOrarieOccupate(){
     this.prenotazioneService.findByDateAndMedico(
       formattedGiorno, 
       medico).subscribe(data => {
-  
+
         console.log('reagito ad evento findByDateAndMedico');
-      //console.log(`data ${data}`);
-      this.listaPrenotazioniFiltroMediciGiorni = data as Array<Medico>;
-      console.log(this.listaPrenotazioniFiltroMediciGiorni);
 
-      // Estrai le fasce orarie in una lista di stringhe e filtra i valori undefined
-      const fasceOrarie: string[] = this.listaPrenotazioniFiltroMediciGiorni
-        .map(item => item.fasciaOraria)
-        .filter((fasciaOraria): fasciaOraria is string => fasciaOraria !== undefined);
+        // ESTRAE LE FASCE ORARIE PRENOTATE E LE INSERISCE IN UN ARRAY
+        this.listaFasceOrariePrenotate = (data as Array<{ fasciaOraria: string | undefined }>)
+          .map(item => item.fasciaOraria)
+          .filter((fasciaOraria): fasciaOraria is string => fasciaOraria !== undefined);
+        
+        console.log(this.listaFasceOrariePrenotate);
 
-        console.log('FASCE ORARIE ESTRATTE', fasceOrarie);
+        // GENERAZIONE ARRAY NUOVO CON SOLO LE FASCE ORARIE NON PRENOTATE
+        this.fasceOrarieDisponibili = this.listaFascieOrarie.filter(fascia => !this.listaFasceOrariePrenotate.includes(fascia));
+        
+        console.log('fasce orarie disponibili:');
+        console.log(this.fasceOrarieDisponibili);
   
     });
   }
