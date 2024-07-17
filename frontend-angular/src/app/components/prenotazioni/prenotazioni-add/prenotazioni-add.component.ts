@@ -122,6 +122,13 @@ getFasceOrarieOccupate(){
       //console.log(`data ${data}`);
       this.listaPrenotazioniFiltroMediciGiorni = data as Array<Medico>;
       console.log(this.listaPrenotazioniFiltroMediciGiorni);
+
+      // Estrai le fasce orarie in una lista di stringhe e filtra i valori undefined
+      const fasceOrarie: string[] = this.listaPrenotazioniFiltroMediciGiorni
+        .map(item => item.fasciaOraria)
+        .filter((fasciaOraria): fasciaOraria is string => fasciaOraria !== undefined);
+
+        console.log('FASCE ORARIE ESTRATTE', fasceOrarie);
   
     });
   }
