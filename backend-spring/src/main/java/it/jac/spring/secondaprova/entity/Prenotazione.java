@@ -32,26 +32,21 @@ public class Prenotazione {
     @Column(name = "GIORNO", length = 12, nullable = false)
     private LocalDate giorno;
 	
+	
 	@NonNull
     @Column(name = "FASCIA_ORARIA", length = 20, nullable = false)
     private String fasciaOraria;
     
+
 	@NonNull
     @Column(name = "COD_CONFERMA", length = 100, nullable = false, unique = true)
     private String codConferma;
 	
-    // FK
-	
-//    @ManyToOne
-//	@NonNull
-//    @JoinColumn(name = "ID_FASCIA_ORARIA", referencedColumnName = "ID", nullable = false)
-//    private FasciaOraria fasciaOraria;
+    // FK:
     
     @ManyToOne
 	@NonNull
     @JoinColumn(name = "ID_MEDICO", referencedColumnName = "ID", nullable = false)
     private Medico idMedico;
     
-
-
 }

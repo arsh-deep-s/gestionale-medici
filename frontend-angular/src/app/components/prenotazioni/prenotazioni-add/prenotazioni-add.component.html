@@ -36,7 +36,7 @@
           <mat-form-field class="full-width">
             <mat-select placeholder="fascia_oraria" formControlName="fascia_oraria">
               @for (fasciaOraria of listaFascieOrarie; track fasciaOraria) {
-                <mat-option [value]="fasciaOraria.fasciaOraria">{{fasciaOraria.fasciaOraria}}</mat-option>
+                <mat-option [value]="fasciaOraria">{{fasciaOraria}}</mat-option>
               }
             </mat-select>
             @if (prenotazioneForm.controls['fascia_oraria'].hasError('required')) {

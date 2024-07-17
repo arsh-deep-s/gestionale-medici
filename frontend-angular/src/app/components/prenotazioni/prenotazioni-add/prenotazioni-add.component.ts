@@ -35,7 +35,18 @@ export class PrenotazioniAddComponent {
     private datePipe: DatePipe) { }
 
     listaMedici: Array<Medico> = [];
-    listaFascieOrarie: Array<FasciaOraria> = [];
+    listaFascieOrarie: Array<string> = [
+      '9:00 - 10:00',
+      '10:00 - 11:00',
+      '11:00 - 12:00',
+      '12:00 - 13:00',
+      '13:00 - 14:00',
+      '14:00 - 15:00',
+      '15:00 - 16:00',
+      '16:00 - 17:00',
+      '17:00 - 18:00',
+      '18:00 - 19:00'
+    ];
 
   private fb = inject(FormBuilder);
 
@@ -62,28 +73,15 @@ export class PrenotazioniAddComponent {
     });
     console.log('termine chiamata funzione service medici');
 
-        // RECUPERO FASCIE ORARIE
-    //console.log('richiamo metodo service findAll');
-
-    this.fasciaOrariaService.findAll2().subscribe(data => {
-
-      console.log('reagito ad evento del service medici');
-      //console.log(`data ${data}`);
-      this.listaFascieOrarie = data as Array<FasciaOraria>;
-      console.log(this.listaFascieOrarie);
-
-    });
-    console.log('termine chiamata funzione service medici');
-
 }
 
 onSubmit(): void {
 
-  const fascia_oraria: string = this.prenotazioneForm.value.fascia_oraria ?? '';
-
   const giorno: Date = this.prenotazioneForm.value.giorno ?? new Date();
 
   const formattedGiorno = this.datePipe.transform(giorno, 'yyyy-MM-dd') ?? 'error';
+
+  const fascia_oraria: string = this.prenotazioneForm.value.fascia_oraria ?? '';
 
   const id_medico: Medico | null = this.prenotazioneForm.value.id_medico ?? null;
 
