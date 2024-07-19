@@ -33,33 +33,23 @@ export class PrenotazioniGetComponent implements OnInit {
 
   }
 
-  // FUNZIONE PER ELIMINARE LA PRENOTAZIONE, RITORNA E STAMPA MESSAGGIO DI ERRORE
-deletePrenotazione(id: any) {
-  this.prenotazioneService.deletePrenotazione(id).subscribe({
-    next: (response: any) => {
-      console.log('reagito ad evento del service elimina prenotazione');
-      console.log(response.message);
-      alert(response.message); // Mostra il messaggio di successo
-    },
-    error: (error: HttpErrorResponse) => {
-      alert(error.error); // Questo mostra l'errore all'interno di un alert
-    },
-    complete: () => {
-      console.log('Operazione completata');
-    }
-  });
+  // FUNZIONE PER ELIMINARE PRENOTAZIONI, STAMPA MESSAGGI DI ERRORE & OK
+  deletePrenotazione(id: any) {
+    this.prenotazioneService.deletePrenotazione(id).subscribe({
+      next: (response: any) => {
+        console.log('reagito ad evento del service elimina prenotazione');
+        console.log(response.message);
+        alert(response.message); // Mostra il messaggio di successo all'interno di un alert
+      },
+      error: (error: HttpErrorResponse) => {
+        console.error(JSON.stringify(error));
+        alert(error.error.message); // Mostra l'errore all'interno di un alert
+      },
+      complete: () => {
+        console.log('Operazione completata');
+      }
+    });
 
-  alert('Funzione lanciata!');
-}
-
-// deletePrenotazione(id: any) {
-//   this.prenotazioneService.deletePrenotazione(id).subscribe(HttpResponse => {
-//       console.log('reagito ad evento del service elimina prenotazione');
-//       console.log(JSON.stringify(HttpResponse));
-//       alert(HttpResponse); // Mostra il messaggio di successo
-//     });
-
-//   alert('Funzione lanciata!');
-// }
-
+    alert('Funzione lanciata!');
+  }
 }

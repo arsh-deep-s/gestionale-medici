@@ -2,6 +2,7 @@ package it.jac.spring.secondaprova.controller;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
@@ -57,10 +58,10 @@ public class PrenotazioneController {
 	// DELETE PRENOTAZIONE
 	
 	@PostMapping("/delete")
-    public ResponseEntity<String> deletePrenotazione(@RequestParam Long id) {
+    public ResponseEntity<Map<String,String>> deletePrenotazione(@RequestParam Long id) {
         
 		log.info("richiamato metodo POST deletePrenotazione");	
-		ResponseEntity<String> response = service.deletePrenotazioneById(id);
+		ResponseEntity<Map<String,String>> response = service.deletePrenotazioneById(id);
         
         return response;
     }

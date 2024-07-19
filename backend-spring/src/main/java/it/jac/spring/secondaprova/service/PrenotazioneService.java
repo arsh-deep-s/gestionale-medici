@@ -3,7 +3,9 @@ package it.jac.spring.secondaprova.service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -58,7 +60,7 @@ public class PrenotazioneService {
 	    
 	    // DELETE PRENOTAZIONE BY ID
 	    
-	    public ResponseEntity<String> deletePrenotazioneById(Long id) {
+	    public ResponseEntity<Map<String, String>> deletePrenotazioneById(Long id) {
 	    	
 	    	log.info("richiamato metodo intervento service deletePrenotazioneById");
 	    	
@@ -86,15 +88,20 @@ public class PrenotazioneService {
 	                // Elimina la prenotazione dal repository
 	                repository.deleteById(id);
 	                
-	                return new ResponseEntity<>("OK! Prenotazione eliminata con successo!", HttpStatus.OK);
-//	                return ResponseEntity.ok("OK! Prenotazione eliminata con successo!");
+	                Map<String, String> response = new HashMap<>();
+	                response.put("message", "OK! Prenotazione eliminata con successo!");
+	                return new ResponseEntity<>(response, HttpStatus.OK);
 	            } else {
 	                // Se non è possibile eliminare la prenotazione perché mancano meno di 48 ore
-	                return ResponseEntity.badRequest().body("Impossibile eliminare la prenotazione, mancano meno di 48 ore!");
+	                Map<String, String> response = new HashMap<>();
+	                response.put("message", "Impossibile eliminare la prenotazione, mancano meno di 48 ore!");
+	                return ResponseEntity.badRequest().body(response);
 	            }
 	        } else {
 	            // Se la prenotazione non è stata trovata nel repository
-	            return ResponseEntity.badRequest().body("Not found.");
+	            Map<String, String> response = new HashMap<>();
+	            response.put("message", "Error: Not Found.");
+	            return ResponseEntity.badRequest().body(response);
 	        }
 	    	
 	    }
