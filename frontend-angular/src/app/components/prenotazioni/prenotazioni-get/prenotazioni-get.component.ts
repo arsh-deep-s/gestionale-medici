@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Prenotazione, PrenotazioneControllerService } from '../../../api/v1';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpErrorResponse, HttpResponse, HttpStatusCode } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
 import { RouterLink } from '@angular/router';
 
@@ -33,14 +33,33 @@ export class PrenotazioniGetComponent implements OnInit {
 
   }
 
-  deletePrenotazione(id: any) {
-
-    this.prenotazioneService.deletePrenotazione(id).subscribe(Response => {
+  // FUNZIONE PER ELIMINARE LA PRENOTAZIONE, RITORNA E STAMPA MESSAGGIO DI ERRORE
+deletePrenotazione(id: any) {
+  this.prenotazioneService.deletePrenotazione(id).subscribe({
+    next: (response: any) => {
       console.log('reagito ad evento del service elimina prenotazione');
-    })
+      console.log(response.message);
+      alert(response.message); // Mostra il messaggio di successo
+    },
+    error: (error: HttpErrorResponse) => {
+      alert(error.error); // Questo mostra l'errore all'interno di un alert
+    },
+    complete: () => {
+      console.log('Operazione completata');
+    }
+  });
 
-    alert('Funzione lanciata!')
+  alert('Funzione lanciata!');
+}
 
-  }
+// deletePrenotazione(id: any) {
+//   this.prenotazioneService.deletePrenotazione(id).subscribe(HttpResponse => {
+//       console.log('reagito ad evento del service elimina prenotazione');
+//       console.log(JSON.stringify(HttpResponse));
+//       alert(HttpResponse); // Mostra il messaggio di successo
+//     });
+
+//   alert('Funzione lanciata!');
+// }
 
 }

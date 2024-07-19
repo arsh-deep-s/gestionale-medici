@@ -10,6 +10,7 @@ import java.util.UUID;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -84,7 +85,9 @@ public class PrenotazioneService {
 	            if (now.isBefore(limiteEliminazione)) {
 	                // Elimina la prenotazione dal repository
 	                repository.deleteById(id);
-	                return ResponseEntity.ok("OK, deleted");
+	                
+	                return new ResponseEntity<>("OK! Prenotazione eliminata con successo!", HttpStatus.OK);
+//	                return ResponseEntity.ok("OK! Prenotazione eliminata con successo!");
 	            } else {
 	                // Se non è possibile eliminare la prenotazione perché mancano meno di 48 ore
 	                return ResponseEntity.badRequest().body("Impossibile eliminare la prenotazione, mancano meno di 48 ore!");
