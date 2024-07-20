@@ -15,13 +15,25 @@ import lombok.RequiredArgsConstructor;
 @NoArgsConstructor // COSTRUTTORE VUOTO
 @RequiredArgsConstructor // COSTRUTTORE CON ARGOMENTI @NONNULL
 @Entity
-@Table(name = "cliente")
-public class Cliente {
+@Table(name = "utente")
+public class Utente {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private Long id;
+	
+	@NonNull
+	@Column(name = "EMAIL", unique = true, nullable = false, length = 30)
+	private String email;
+	
+	@NonNull
+	@Column(name = "PASSWORD", nullable = false, length = 30)
+	private String password;
+	
+	@NonNull
+	@Column(name = "RUOLO", nullable = false, length = 255)
+	private String ruolo;
 	
 	@NonNull
 	@Column(name = "NOME", nullable = false, length = 20)
@@ -30,15 +42,7 @@ public class Cliente {
 	@NonNull
 	@Column(name = "COGNOME", nullable = false, length = 20)
 	private String cognome;
-	
-	@NonNull
-	@Column(name = "MAIL", nullable = false, length = 30)
-	private String mail;
-	
-	@NonNull
-	@Column(name = "PASSWORD", nullable = false, length = 30)
-	private String password;
-	
+
 	@NonNull
 	@Column(name = "CODICE_FISCALE", length = 16, nullable = false, unique = true)
 	private String codiceFiscale;
