@@ -20,10 +20,10 @@ export interface User {
     createdAt?: string;
     updatedAt?: string;
     enabled?: boolean;
-    credentialsNonExpired?: boolean;
+    accountNonLocked?: boolean;
     accountNonExpired?: boolean;
+    credentialsNonExpired?: boolean;
     authorities?: Array<GrantedAuthority>;
     username?: string;
-    accountNonLocked?: boolean;
 }
 
