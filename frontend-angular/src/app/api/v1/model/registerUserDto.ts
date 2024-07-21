@@ -14,6 +14,8 @@
 export interface RegisterUserDto { 
     email?: string;
     password?: string;
-    fullName?: string;
+    nome?: string;
+    cognome?: string;
+    codiceFiscale?: string;
 }
 

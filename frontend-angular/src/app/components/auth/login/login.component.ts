@@ -54,7 +54,7 @@ export class LoginComponent {
         this.authService.saveToken(response.token); // salvo il token
         console.log(response.token);
         // Esegui la redirect verso /listaprenotazioni se il login è riuscito
-        
+        this.router.navigate(['/listaprenotazioni'])
       },
       error: (error: HttpErrorResponse) => {
         console.error('Login failed:', error);

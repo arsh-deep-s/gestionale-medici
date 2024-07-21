@@ -11,7 +11,6 @@ import it.jac.spring.secondaprova.entity.Prenotazione;
 
 @Repository
 public interface PrenotazioneRepository extends JpaRepository <Prenotazione, Long>{
-	List<Prenotazione> findByGiorno(LocalDate giorno);
 	List<Prenotazione> findByGiornoAndMedico(LocalDate giorno, Medico medico);
 
 }

@@ -58,12 +58,12 @@ public class MedicoService {
     
     // FIND BY ID MEDICO
     
-    public Optional<Medico> findById(Long id) {
-    	
-    	log.info("richiamato metodo service findById");
-    	
-    	return repository.findById(id);
-    	
-    }
+//    public Optional<Medico> findById(Long id) {
+//    	
+//    	log.info("richiamato metodo service findById");
+//    	
+//    	return repository.findById(id);
+//    	
+//    }
 
 }

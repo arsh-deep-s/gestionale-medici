@@ -4,9 +4,10 @@ import { catchError, throwError } from 'rxjs';
 export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
   const authToken = localStorage.getItem('jwtToken');
   const loginUrl = 'http://localhost:8080/auth/login';
+  const signUpUrl = 'http://localhost:8080/auth/signup';
 
     // Verifica se l'URL della richiesta è quello della login
-    if (req.url === loginUrl) {
+    if (req.url === loginUrl || req.url === signUpUrl) {
       // Se è la login, passa la richiesta originale senza aggiungere il token
       return next(req).pipe(
         catchError((err: any) => {

@@ -39,18 +39,18 @@ public class MedicoController {
 	    
 	    // ADD MEDICO
 	    
-		@PostMapping("/add")
-	    public ResponseEntity<String> addMedico(@RequestParam String nome, 
-	                                             @RequestParam String indirizzoStudio,
-	                                             @RequestParam String specialita,
-	                                             @RequestParam Double prezzoVisita) {
-	        
-			log.info("richiamato metodo POST addMedico");
-	        ResponseEntity<String> response = service.addMedico(nome, indirizzoStudio, specialita, prezzoVisita);
-	        
-	        return response;
-	    }
-	
+//		@PostMapping("/add")
+//	    public ResponseEntity<String> addMedico(@RequestParam String nome, 
+//	                                             @RequestParam String indirizzoStudio,
+//	                                             @RequestParam String specialita,
+//	                                             @RequestParam Double prezzoVisita) {
+//	        
+//			log.info("richiamato metodo POST addMedico");
+//	        ResponseEntity<String> response = service.addMedico(nome, indirizzoStudio, specialita, prezzoVisita);
+//	        
+//	        return response;
+//	    }
+//	
 	    
 	    
 	    

@@ -14,16 +14,18 @@ import { GrantedAuthority } from './grantedAuthority';
 
 export interface User { 
     id?: number;
-    fullName?: string;
+    nome?: string;
+    cognome?: string;
     email?: string;
     password?: string;
+    codiceFiscale?: string;
     createdAt?: string;
     updatedAt?: string;
     enabled?: boolean;
     accountNonLocked?: boolean;
-    accountNonExpired?: boolean;
-    credentialsNonExpired?: boolean;
-    authorities?: Array<GrantedAuthority>;
     username?: string;
+    credentialsNonExpired?: boolean;
+    accountNonExpired?: boolean;
+    authorities?: Array<GrantedAuthority>;
 }
 

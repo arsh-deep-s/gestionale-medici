@@ -66,27 +66,19 @@ public class PrenotazioneController {
         return response;
     }
 	
-	// FIND PRENOTAZIONE BY ID
+	// FIND PRENOTAZIONE BY ID  - USED TO EDIT DATA
 	
-	@GetMapping("/findbyid")
-    public Optional<Prenotazione> findPrenotazioneById(@RequestParam Long id) {
-        
-        log.info("Richiamato metodo GET findPrenotazioneById");
-        
-        Optional<Prenotazione> response = service.findById(id);
-        
-        return response;
-    }
+//	@GetMapping("/findbyid")
+//    public Optional<Prenotazione> findPrenotazioneById(@RequestParam Long id) {
+//        
+//        log.info("Richiamato metodo GET findPrenotazioneById");
+//        
+//        Optional<Prenotazione> response = service.findById(id);
+//        
+//        return response;
+//    }
 	
-  	// FIND BY DATE PRENOTAZIONE
-  	
-    @GetMapping("/findbydate")
-    public List<Prenotazione> findByDate(@RequestParam LocalDate giorno) {
-    	
-		log.info("richiamato metodo GET findByDate");
-        return service.findByGiorno(giorno);
-    }
-    
+ 
   	// FILTER BY GIORNO E MEDICO
   	
     @PostMapping("/findbygiornoandmedico")

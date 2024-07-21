@@ -1,0 +1,57 @@
+<form [formGroup]="signUpForm" novalidate (ngSubmit)="onSubmit()">
+    <mat-card class="shipping-card">
+      <mat-card-header>
+        <mat-card-title>Sign Up Form</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="nome" formControlName="nome" maxlength="20">
+              @if (signUpForm.controls['nome'].hasError('required')) {
+                <mat-error>nome is <strong>required</strong></mat-error>
+              }
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="cognome" formControlName="cognome" maxlength="20">
+              @if (signUpForm.controls['cognome'].hasError('required')) {
+                <mat-error>cognome is <strong>required</strong></mat-error>
+              }
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="email" formControlName="email" maxlength="30" type="email">
+              @if (signUpForm.controls['email'].hasError('required')) {
+                <mat-error>email is <strong>required</strong></mat-error>
+              }
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="codiceFiscale" formControlName="codiceFiscale" maxlength="16">
+              @if (signUpForm.controls['codiceFiscale'].hasError('required')) {
+                <mat-error>Codice Fiscale is <strong>required</strong></mat-error>
+              }
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="password" formControlName="password" maxlength="30" type="password">
+              @if (signUpForm.controls['password'].hasError('required')) {
+                <mat-error>password is <strong>required</strong></mat-error>
+              }
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit" [disabled]="signUpForm.invalid">Submit</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+  

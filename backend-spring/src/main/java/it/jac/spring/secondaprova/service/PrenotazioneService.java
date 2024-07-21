@@ -109,23 +109,14 @@ public class PrenotazioneService {
 	    
 	    // FIND PRENOTAZIONE BY ID
 	    
-	    public Optional<Prenotazione> findById(Long id) {
-	    	
-	    	log.info("richiamato metodo service findById");
-	    	
-	    	return repository.findById(id);
-	    	
-	    }
-	    
-	    // FIND BY GIORNO PRENOTAZIONE
-	    
-	    public List<Prenotazione> findByGiorno(LocalDate giorno) {
-	    	
-	    	log.info("richiamato metodo service findByGiorno");
-	    	
-	    	return repository.findByGiorno(giorno);
-	    	
-	    }
+//	    public Optional<Prenotazione> findById(Long id) {
+//	    	
+//	    	log.info("richiamato metodo service findById");
+//	    	
+//	    	return repository.findById(id);
+//	    	
+//	    }
+	   
 	    
 	    // FIND BY GIORNO AND MEDICO PRENOTAZIONE
 	    
