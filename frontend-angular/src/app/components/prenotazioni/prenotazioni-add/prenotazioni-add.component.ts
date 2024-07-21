@@ -28,6 +28,8 @@ import { debounceTime } from 'rxjs/internal/operators/debounceTime';
   styleUrl: './prenotazioni-add.component.css'
 })
 export class PrenotazioniAddComponent {
+  
+  todayDate:Date = new Date();
 
   constructor(private prenotazioneService: PrenotazioneControllerService,
     private medicoService: MedicoControllerService,

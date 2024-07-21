@@ -23,7 +23,7 @@
           <div class="col">
             <mat-form-field>
                 <mat-label>Giorno</mat-label>
-                <input matInput [matDatepicker]="picker" formControlName="giorno">
+                <input matInput [matDatepicker]="picker" [min]="todayDate" formControlName="giorno">
                 <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>

@@ -7,7 +7,7 @@ import { LogoutComponent } from '../../components/auth/logout/logout.component';
 import { SignupComponent } from '../../components/auth/signup/signup.component';
 
 export const routes: Routes = [
-    {path: '', pathMatch: 'full', redirectTo: '/index'},
+    {path: '', pathMatch: 'full', redirectTo: '/login'},
     {path: 'login', component: LoginComponent },
     {path: 'logout', component: LogoutComponent },
     {path: 'listamedici', component: MediciGetComponent},
