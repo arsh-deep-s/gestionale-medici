@@ -2,7 +2,19 @@ import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
 
 export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
-  const authToken = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjaWFvQGdtYWlsLmNvbSIsImlhdCI6MTcyMTU2NzU0OSwiZXhwIjoxNzIxNjUzOTQ5fQ.aRZ_AnZ--VMzYUUjpcj_H4yChaC1ptKQ7B5ujootLHA';
+  const authToken = localStorage.getItem('jwtToken');
+  const loginUrl = 'http://localhost:8080/auth/login';
+
+    // Verifica se l'URL della richiesta è quello della login
+    if (req.url === loginUrl) {
+      // Se è la login, passa la richiesta originale senza aggiungere il token
+      return next(req).pipe(
+        catchError((err: any) => {
+          handleHttpError(err);
+          return throwError(() => err);
+        })
+      );
+    }
 
   // Clone the request and add the authorization header
   const authReq = req.clone({
@@ -37,3 +49,7 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
     })
   );;
 };
+
+function handleHttpError(err: any) {
+  throw new Error('Function not implemented.');
+}

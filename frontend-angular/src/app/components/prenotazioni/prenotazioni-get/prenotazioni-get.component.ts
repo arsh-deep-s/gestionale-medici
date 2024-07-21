@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Prenotazione, PrenotazioneControllerService } from '../../../api/v1';
 import { HttpClientModule, HttpErrorResponse, HttpResponse, HttpStatusCode } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-prenotazioni-get',
@@ -17,7 +17,7 @@ export class PrenotazioniGetComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'codConferma', 'fasciaOraria', 'giorno', 'medico', 'delete'];
 
-  constructor(private prenotazioneService: PrenotazioneControllerService) { }
+  constructor(private prenotazioneService: PrenotazioneControllerService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -40,6 +40,7 @@ export class PrenotazioniGetComponent implements OnInit {
         console.log('reagito ad evento del service elimina prenotazione');
         console.log(response.message);
         alert(response.message); // Mostra il messaggio di successo all'interno di un alert
+        this.router.navigate(['/listaprenotazioni']);
       },
       error: (error: HttpErrorResponse) => {
         console.error(JSON.stringify(error));

@@ -16,6 +16,7 @@ export class AuthService {
 
   saveToken(token: string): void {
     localStorage.setItem('jwtToken', token);
+    console.log("Token saved in LocalStorage: ", this.getToken());
   }
 
   getToken(): string | null {

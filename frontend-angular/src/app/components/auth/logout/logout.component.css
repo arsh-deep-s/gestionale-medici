@@ -1,0 +1,23 @@
+.mat-toolbar {
+    background: #3f51b5;
+    color: white;
+  }
+  
+  .spacer {
+    flex: 1 1 auto;
+  }
+  
+  .mat-card {
+    max-width: 400px;
+    margin: 2em auto;
+    text-align: center;
+  }
+  
+  .mat-card-content h2 {
+    margin: 0.5em 0;
+  }
+  
+  .mat-card-actions {
+    justify-content: center;
+  }
+  
