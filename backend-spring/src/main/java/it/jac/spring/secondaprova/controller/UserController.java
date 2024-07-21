@@ -20,6 +20,8 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
+    
+    // Endpoint per ottenere le informazioni dell'utente autenticato.
 
     @GetMapping("/me")
     public ResponseEntity<User> authenticatedUser() {

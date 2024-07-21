@@ -8,6 +8,9 @@ public class RegisterUserDto {
     
     private String password;
     
-    private String fullName;
+    private String nome;
     
+    private String cognome;
+    
+    private String codiceFiscale;
 }

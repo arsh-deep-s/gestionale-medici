@@ -16,6 +16,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.NonNull;
 
 @Table(name = "users")
 @Entity
@@ -25,18 +26,24 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false)
     private Integer id;
+    
+    @Column(name = "NOME", nullable = false, length = 30)
+    private String nome;
+    
+    @Column(name = "COGNOME", nullable = false, length = 30)
+    private String cognome;
 
-    @Column(nullable = false)
-    private String fullName;
-
-    @Column(unique = true, length = 100, nullable = false)
+    @Column(name = "EMAIL", unique = true, length = 100, nullable = false)
     private String email;
 
-    @Column(nullable = false)
+    @Column(name = "PASSWORD", nullable = false)
     private String password;
+    
+	@Column(name = "CODICE_FISCALE", length = 16, nullable = false, unique = true)
+	private String codiceFiscale;
 
     @CreationTimestamp
-    @Column(updatable = false, name = "created_at")
+    @Column(name = "created_at", updatable = false)
     private Date createdAt;
 
     @UpdateTimestamp
@@ -78,8 +85,13 @@ public class User implements UserDetails {
     }
     
  // Metodi setter personalizzati per il concatenamento
-    public User setFullName(String fullName) {
-        this.fullName = fullName;
+    public User setNome(String nome) {
+        this.nome = nome;
+        return this;
+    }
+    
+    public User setCognome(String cognome) {
+        this.cognome = cognome;
         return this;
     }
 
@@ -90,6 +102,11 @@ public class User implements UserDetails {
 
     public User setPassword(String password) {
         this.password = password;
+        return this;
+    }
+    
+    public User setCodiceFiscale(String codiceFiscale) {
+        this.codiceFiscale = codiceFiscale;
         return this;
     }
     
